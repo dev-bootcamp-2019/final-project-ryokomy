@@ -32,7 +32,6 @@ contract ImageToken is ERC721Token, Pausable {
     constructor(string _name, string _symbol) ERC721Token(_name, _symbol) public {}
 
     /** 
-    * @dev 
     * @param _imageName image name which will be binded to tokenId.
     * @param _imageURL image URL which will be binded to tokenId.
     */
