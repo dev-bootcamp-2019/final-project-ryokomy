@@ -1,2 +1,2 @@
 network: rinkeby
-address: 0x82856a8fb478d6d88bc5045808bdc2e7fd5eecd8
+address: 0xb7bfe93bff993bbadaabe95b526fb09d7846cdeb
