@@ -2,7 +2,7 @@
 ## Concept
 There are so many digital images in the world.  
 However, they are easily copied, so they cannot have a value.  
-In order to solve that problem, this DApps make them unique b7 creating ImageToken (ERC721 token).
+In order to solve that problem, this DApp make them unique by creating ImageToken (ERC721 token).
 
 ## How to Use
 ```
