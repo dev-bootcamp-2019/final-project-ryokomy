@@ -3,10 +3,15 @@ const ImageToken = artifacts.require("ImageToken");
 contract("ImageToken", function(accounts) {
     it("should deploy a ImageToken properly", () =>
     {
+    let imageTokenInstance
       return ImageToken.deployed().then(function(instance) {
+        imageTokenInstance = instance
           return instance.name()
       }).then(function(name) {
-          return assert.equal(name, "ImageToken", "Image Name is invalid")
+          assert.equal(name, "ImageToken", "ImageToken Name is invalid")
+          return imageTokenInstance.symbol()
+      }).then(function(symbol) {
+          return assert.equal(symbol, "IT", "ImageToken Symbol is invalid")
       })
     })
   
@@ -20,7 +25,7 @@ contract("ImageToken", function(accounts) {
         })
       })
   
-      it("should mint a ImageToken from multiple accounts", function() {
+      it("should mint multiple ImageToken from multiple accounts", function() {
         let imageTokenInstance
         return ImageToken.deployed()
         .then(function(instance) {
@@ -36,10 +41,26 @@ contract("ImageToken", function(accounts) {
             return imageTokenInstance.totalSupply()
         })
         .then(function(balance) {
-            console.log(balance)
             assert.equal(balance.toNumber(), 3, "totalSupply is invalid")
         })
     })
+
+    it("should minted tokens' owners are correct", function() {
+        let imageTokenInstance
+        return ImageToken.deployed().then(function(instance) {
+          imageTokenInstance = instance
+            return instance.ownerOf(1)
+        }).then(function(owner1) {
+            assert.equal(owner1, accounts[0], "First owner is incorrect")
+            return imageTokenInstance.ownerOf(2)
+        }).then(function(owner2) {
+            assert.equal(owner2, accounts[1], "Seconde owner is incorrect")
+            return imageTokenInstance.ownerOf(3)
+        }).then(function(owner3) {
+            assert.equal(owner3, accounts[2], "Third owner is incorrect")
+        })
+    })
+
     
       
 })
