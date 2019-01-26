@@ -17,7 +17,7 @@ App = {
       web3 = new Web3(App.web3Provider);
     }
 
-    return App.initContract();
+    return App.initContract()
   },
 
   initContract: function() {
@@ -34,7 +34,7 @@ App = {
       // return App.getBalances();
     });
 
-    return App.bindEvents();
+    App.bindEvents();
   },
 
   bindEvents: function() {
@@ -64,39 +64,39 @@ App = {
         return imageTokenInstance.mint(imageName, imageURL, {from: account, gas: 6000000});
       }).then(function(result) {
         alert('Create Successful!');
-        return
-        // return App.getBalances(); // TODO: check
+        // return getBalances()
+        return App.getBalances(); // TODO: check
       }).catch(function(err) {
         console.log(err.message);
       });
     });
   },
 
-  // getBalances: function() {
-  //   console.log('Getting balances...');
+  getBalances: function() {
+    console.log('Getting balances...');
 
-  //   var tutorialTokenInstance;
+    let imageTokenInstance;
 
-  //   web3.eth.getAccounts(function(error, accounts) {
-  //     if (error) {
-  //       console.log(error);
-  //     }
+    web3.eth.getAccounts(function(error, accounts) {
+      if (error) {
+        console.log(error);
+      }
 
-  //     var account = accounts[0];
+      var account = accounts[0];
 
-  //     App.contracts.TutorialToken.deployed().then(function(instance) {
-  //       tutorialTokenInstance = instance;
+      App.contracts.ImageToken.deployed().then(function(instance) {
+        imageTokenInstance = instance;
 
-  //       return tutorialTokenInstance.balanceOf(account);
-  //     }).then(function(result) {
-  //       balance = result.c[0];
+        return imageTokenInstance.balanceOf(account);
+      }).then(function(result) {
+        balance = result.c[0];
 
-  //       $('#TTBalance').text(balance);
-  //     }).catch(function(err) {
-  //       console.log(err.message);
-  //     });
-  //   });
-  // }
+        $('#ImageTokenBalance').text(balance);
+      }).catch(function(err) {
+        console.log(err.message);
+      });
+    });
+  }
 
 };
 
