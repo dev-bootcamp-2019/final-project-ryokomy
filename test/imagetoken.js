@@ -1,6 +1,11 @@
 const ImageToken = artifacts.require("ImageToken");
 
 contract("ImageToken", function(accounts) {
+
+    /**
+     * @dev check ImageToken deployment
+     * @dev we should deploy ImageToken properly
+     */
     it("should deploy a ImageToken properly", () =>
     {
     let imageTokenInstance
@@ -15,6 +20,10 @@ contract("ImageToken", function(accounts) {
       })
     })
   
+    /**
+     * @dev check minting ImageToken
+     * @dev we should mint ImageToken from one account
+     */
     it("should mint a ImageToken from first account", function() {
         return ImageToken.deployed()
         .then(function(instance) {
@@ -25,7 +34,11 @@ contract("ImageToken", function(accounts) {
         })
       })
   
-      it("should mint multiple ImageToken from multiple accounts", function() {
+    /**
+     * @dev check minting ImageToken from multiple accounts
+     * @dev we should mint ImageTokens from multiple accounts
+     */
+    it("should mint multiple ImageToken from multiple accounts", function() {
         let imageTokenInstance
         return ImageToken.deployed()
         .then(function(instance) {
@@ -45,6 +58,10 @@ contract("ImageToken", function(accounts) {
         })
     })
 
+    /**
+     * @dev check ImageToken owners
+     * @dev minted ImageToken should have correct owner
+     */
     it("should minted tokens' owners are correct", function() {
         let imageTokenInstance
         return ImageToken.deployed().then(function(instance) {
@@ -61,6 +78,10 @@ contract("ImageToken", function(accounts) {
         })
     })
 
+    /**
+     * @dev check Transfer token
+     * @dev we chould transfer token properly
+     */
     it("should transfer token", function() {
         let imageTokenInstance
         return ImageToken.deployed().then(function(instance) {
