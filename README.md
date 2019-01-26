@@ -12,14 +12,17 @@ In order to solve that problem, this DApp make them unique by creating ImageToke
 - solidity: v0.4.25
 
 ## How to Use
+### ganache-cli & metamask  
+set up ganache-cli and metamask
+### this repository
 ```
 git clone <this repository>
 cd <image-tokne-creator>
 npm install
 truffle compile
-ganache-cli
 truffle migrate
 npm run dev
 ```
-And then, input image name, image URL and push create button.
+Then, open localhost:3000 in your browser.  
+Input image name, image URL and push create button.  
 After confirm transaction using metamask, you can see the token balance increment.
