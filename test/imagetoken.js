@@ -10,14 +10,13 @@ contract("ImageToken", function(accounts) {
       })
     })
   
-    it("should mint a ImageToken from first account", function(accounts) {
-      return ImageToken.deployed().then(function(instance) {
-        console.log("lkom")
-        console.log(accounts)
+    it("should mint a ImageToken from first account", function() {
+      return ImageToken.deployed()
+      .then(function(instance) {
           return instance.mint("firstImage", "firstURL", {from: accounts[0], gas: 6000000})
-      }).then(function(resulsts) {
-          return console.log(results)
-          // return assert.equal(name, "ImageToken", "Image Name is invalid")
+      })
+      .then(function(results) {
+          return assert.equal(Boolean(results.receipt.status), true, "mint transaction is failed")
       })
     })
   
