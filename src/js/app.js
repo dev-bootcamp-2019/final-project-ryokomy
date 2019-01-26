@@ -34,7 +34,7 @@ App = {
       // return App.getBalances();
     });
 
-    App.bindEvents();
+    return App.bindEvents();
   },
 
   bindEvents: function() {
@@ -92,6 +92,7 @@ App = {
         balance = result.c[0];
 
         $('#ImageTokenBalance').text(balance);
+        $('#AccountAddress').text(String(account));
       }).catch(function(err) {
         console.log(err.message);
       });
