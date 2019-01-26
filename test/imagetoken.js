@@ -61,6 +61,17 @@ contract("ImageToken", function(accounts) {
         })
     })
 
-    
+    it("should transfer token", function() {
+        let imageTokenInstance
+        return ImageToken.deployed().then(function(instance) {
+          imageTokenInstance = instance
+          return imageTokenInstance.safeTransferFrom(accounts[0], accounts[1], 1, {from: accounts[0], gas: 6000000})
+        }).then(function(results) {
+            assert.equal(Boolean(results.receipt.status), true, "transfer transaction is failed")
+            return imageTokenInstance.ownerOf(1)
+        }).then(function(owner1) {
+            return assert.equal(owner1, accounts[1], "transfer function didn't work")
+        })
+    })    
       
 })
